@@ -106,6 +106,9 @@ const Task = () => {
     }
   };
 
+  const completedCount = tasks.filter((t) => t.is_done).length;
+  const totalCount = tasks.length;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -141,7 +144,14 @@ const Task = () => {
             <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Task Management
             </h1>
-            <p className="text-gray-600 mt-1">Organize and track your tasks efficiently</p>
+            <p className="text-gray-600 mt-1">
+              Organize your tasks efficiently
+              {totalCount > 0 && (
+                <span className="ml-2 text-xs font-medium text-slate-400">
+                  — {completedCount}/{totalCount} completed
+                </span>
+              )}
+            </p>
           </div>
           <button
             onClick={() => navigate("entry")}
